@@ -5,7 +5,7 @@
     using AutoNSubstitute.SpecimenBuilders;
     using FluentAssertions;
     using Ploeh.AutoFixture;
-    using Ploeh.AutoFixture.AutoMoq;
+    using Ploeh.AutoFixture.AutoNSubstitute;
     using Ploeh.AutoFixture.Kernel;
 
     internal static class FixtureAssertionExtensions
@@ -15,7 +15,7 @@
             Expression<Func<ISpecimenBuilder, bool>> mockProcessorPredicate =
                 specimenBuilder =>
                     specimenBuilder is Postprocessor &&
-                    ((Postprocessor) specimenBuilder).Builder is MockPostprocessor;
+                    ((Postprocessor) specimenBuilder).Builder is SubstituteRequestHandler;
 
             // Ensure mock processor is added to customizations
             fixture.Customizations.Should().ContainSingle(mockProcessorPredicate);

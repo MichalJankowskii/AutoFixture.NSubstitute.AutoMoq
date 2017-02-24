@@ -6,7 +6,6 @@
     using Core.Providers;
     using Ploeh.AutoFixture;
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments", Justification = "Parameter 'values' is exposed with ReadOnlyCollection.")]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public sealed class InlineAutoMockingTestHelperDataAttribute : InlineAutoMockingDataAttribute
     {

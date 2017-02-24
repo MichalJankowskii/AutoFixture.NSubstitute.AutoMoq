@@ -10,7 +10,6 @@
     using Providers;
     using Xunit.Sdk;
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments", Justification = "Parameter 'values' is exposed with ReadOnlyCollection.")]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public abstract class InlineAutoMockingDataAttribute : DataAttribute
     {

@@ -1,4 +1,4 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Attributes
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes
 {
     using System;
     using AutoMocking.Core.Attributes;
@@ -8,21 +8,21 @@
     using Ploeh.AutoFixture;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    public sealed class InlineAutoNSubstituteDataAttribute : InlineAutoMockingDataAttribute
+    public sealed class InlineAutoMoqDataAttribute : InlineAutoMockingDataAttribute
     {
-        public InlineAutoNSubstituteDataAttribute(params object[] values)
+        public InlineAutoMoqDataAttribute(params object[] values)
             : base(values)
         {
         }
 
-        public InlineAutoNSubstituteDataAttribute(IFixture fixture, IAutoFixtureInlineAttributeProvider provider, params object[] values)
+        public InlineAutoMoqDataAttribute(IFixture fixture, IAutoFixtureInlineAttributeProvider provider, params object[] values)
             : base(fixture, provider, values)
         {
         }
 
         protected override IAutoMockingDataCustomization GenerateAutoMockingDataCustomization()
         {
-            return new AutoNSubstituteDataCustomization();
+            return new AutoMoqDataCustomization();
         }
     }
 }

@@ -4,6 +4,7 @@
             <Word></Word>
          </Unrecognized>
          <Recognized>           
+            <Word>Moq</Word>
             <Word>NSubstitute</Word>
          </Recognized>
          <Deprecated>

@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Objectivity.AutoFixture.XUnit2.AutoNSubstitute")]
-[assembly: AssemblyProduct("Objectivity.AutoFixture.XUnit2.AutoNSubstitute")]
-[assembly: AssemblyDescription("Autofixture auto-mocking for XUnit2 using NSubstitute.")]
+[assembly: AssemblyTitle("Objectivity.AutoFixture.XUnit2.AutoMoq")]
+[assembly: AssemblyProduct("Objectivity.AutoFixture.XUnit2.AutoMoq")]
+[assembly: AssemblyDescription("Autofixture auto-mocking for XUnit2 using Moq.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

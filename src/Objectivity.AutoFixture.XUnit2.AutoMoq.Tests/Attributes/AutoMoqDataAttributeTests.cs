@@ -1,21 +1,22 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests.Attributes
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMoq.Tests.Attributes
 {
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using Core.Customizations;
-    using Core.Providers;
+    using AutoMocking.Core.Customizations;
+    using AutoMocking.Core.Providers;
+    using AutoMoq.Attributes;
+    using AutoMoq.Customizations;
     using FluentAssertions;
-    using Helpers;
     using Moq;
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.Xunit2;
     using Xunit;
     using Xunit.Sdk;
 
-    [Collection("AutoMockingDataAttribute")]
-    [Trait("Category", "Attributes")]
-    public class AutoMockingDataAttributeTests
+    [Collection("AutoMoqDataAttribute")]
+    [Trait("Category", "Moq")]
+    public class AutoMoqDataAttributeTests
     {
         public void TestMethod()
         {
@@ -26,7 +27,7 @@
         {
             // Arrange
             // Act
-            var attribute = new AutoMockingTestHelperDataAttribute();
+            var attribute = new AutoMoqDataAttribute();
 
             // Assert
             attribute.Fixture.Should().NotBeNull();
@@ -42,7 +43,7 @@
             var provider = new Mock<IAutoFixtureAttributeProvider>().Object;
 
             // Act
-            var attribute = new AutoMockingTestHelperDataAttribute(fixture, provider);
+            var attribute = new AutoMoqDataAttribute(fixture, provider);
 
             // Assert
             attribute.Fixture.Should().Be(fixture);
@@ -59,7 +60,7 @@
 
             // Act
             // Assert
-            Assert.Throws<ArgumentNullException>(() => new AutoMockingTestHelperDataAttribute(fixture, provider));
+            Assert.Throws<ArgumentNullException>(() => new AutoMoqDataAttribute(fixture, provider));
         }
 
         [Theory(DisplayName = "GIVEN uninitialized attribute provider WHEN constructor is invoked THEN exception is thrown")]
@@ -71,7 +72,7 @@
 
             // Act
             // Assert
-            Assert.Throws<ArgumentNullException>(() => new AutoMockingTestHelperDataAttribute(fixture, provider));
+            Assert.Throws<ArgumentNullException>(() => new AutoMoqDataAttribute(fixture, provider));
         }
 
         [Theory(DisplayName = "WHEN GetData is invoked THEN fixture is configured and data returned")]
@@ -93,11 +94,11 @@
             dataAttribute.Setup(a => a.GetData(It.IsAny<MethodInfo>())).Returns(data);
             var provider = new Mock<IAutoFixtureAttributeProvider>();
             provider.Setup(p => p.GetAttribute(It.IsAny<IFixture>())).Returns(dataAttribute.Object);
-            var attribute = new AutoMockingTestHelperDataAttribute(fixture.Object, provider.Object)
+            var attribute = new AutoMoqDataAttribute(fixture.Object, provider.Object)
             {
                 IgnoreVirtualMembers = ignoreVirtualMembers
             };
-            var methodInfo = typeof(AutoMockingDataAttributeTests).GetMethod("TestMethod");
+            var methodInfo = typeof(AutoMoqDataAttributeTests).GetMethod("TestMethod");
 
             // Act
             var result = attribute.GetData(methodInfo);
@@ -107,9 +108,22 @@
             provider.VerifyAll();
             dataAttribute.VerifyAll();
 
-            customizations[0].Should().BeOfType<AutoMockingTestHelperDataCustomization> ();
+            customizations[0].Should().BeOfType<AutoMoqDataCustomization>();
             customizations[1].Should().BeOfType<IgnoreVirtualMembersCustomization>();
             ((IgnoreVirtualMembersCustomization)customizations[1]).IgnoreVirtualMembers.Should().Be(ignoreVirtualMembers);
+        }
+
+        [AutoMoqData]
+        [Theory(DisplayName = "GIVEN test method has some parameters WHEN test run THEN parameters are generated")]
+        public void GivenTestMethodHasSomeParameters_WhenTestRun_ThenParametersAreGenerated(int value, IDisposable disposable)
+        {
+            // Arrange
+            // Act
+            // Assert
+            value.Should().NotBe(default(int));
+
+            disposable.Should().NotBeNull();
+            disposable.GetType().Name.Should().StartWith("ObjectProxy", "that way we know it was mocked with MOQ.");
         }
     }
 }

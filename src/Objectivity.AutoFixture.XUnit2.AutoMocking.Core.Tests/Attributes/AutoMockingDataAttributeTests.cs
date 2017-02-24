@@ -40,7 +40,7 @@
         public void GivenExistingFixtureAndAttributeProvider_WhenConstructorIsInvoked_ThenHasSpecifiedFixtureAndAttributeProvider(Fixture fixture)
         {
             // Arrange
-            var provider = new AutoDataAttributeProvider();
+            var provider = new Mock<IAutoFixtureAttributeProvider>().Object;
 
             // Act
             var attribute = new AutoMockingTestHelperDataAttribute(fixture, provider);
@@ -56,7 +56,7 @@
         {
             // Arrange
             const Fixture fixture = null;
-            var provider = new AutoDataAttributeProvider();
+            var provider = new Mock<IAutoFixtureAttributeProvider>().Object;
 
             // Act
             // Assert
@@ -68,7 +68,7 @@
         public void GivenUninitializedAttributeProvider_WhenConstructorIsInvoked_ThenExceptionIsThrown(Fixture fixture)
         {
             // Arrange
-            const AutoDataAttributeProvider provider = null;
+            const IAutoFixtureAttributeProvider provider = null;
 
             // Act
             // Assert

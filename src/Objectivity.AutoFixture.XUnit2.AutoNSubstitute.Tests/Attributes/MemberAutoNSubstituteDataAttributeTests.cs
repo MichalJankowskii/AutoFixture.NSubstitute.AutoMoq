@@ -13,7 +13,7 @@
     using Xunit;
 
     [Collection("MemberAutoNSubstituteDataAttribute")]
-    [Trait("Category", "Attributes")]
+    [Trait("Category", "NSubstitute")]
     public class MemberAutoNSubstituteDataAttributeTests
     {
         public static IEnumerable<object[]> TestData { get; } = new[]

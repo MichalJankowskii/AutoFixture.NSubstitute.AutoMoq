@@ -8,7 +8,7 @@
     using Xunit;
 
     [Collection("AutoNSubstituteDataCustomization")]
-    [Trait("Category", "Customizations")]
+    [Trait("Category", "NSubstitute")]
     public class AutoNSubstituteDataCustomizationTests
     {
         [Theory(DisplayName = "GIVEN existing customization for fixture WHEN Customize is invoked THEN fixture is appropriately customized")]

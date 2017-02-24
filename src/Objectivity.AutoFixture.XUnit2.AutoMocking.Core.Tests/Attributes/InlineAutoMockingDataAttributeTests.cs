@@ -68,7 +68,7 @@
         public void GivenExistingFixtureAndAttributeProvider_WhenConstructorIsInvoked_ThenHasFixtureAttributeProviderAndNoValues(Fixture fixture)
         {
             // Arrange
-            var provider = new InlineAutoDataAttributeProvider();
+            var provider = new Mock<IAutoFixtureInlineAttributeProvider>().Object;
 
             // Act
             var attribute = new InlineAutoMockingTestHelperDataAttribute(fixture, provider);
@@ -85,7 +85,7 @@
         public void GivenExistingFixtureAttributeProviderAndValues_WhenConstructorIsInvoked_ThenHasSpecifiedFixtureAttributeProviderAndValues(Fixture fixture)
         {
             // Arrange
-            var provider = new InlineAutoDataAttributeProvider();
+            var provider = new Mock<IAutoFixtureInlineAttributeProvider>().Object;
             var initialValues = new[] { "test", 1, new object() };
 
             // Act
@@ -103,7 +103,7 @@
         public void GivenExistingFixtureAttributeProviderAndUninitializedValues_WhenConstructorIsInvoked_ThenHasSpecifiedFixtureAttributeProviderAndNoValues(Fixture fixture)
         {
             // Arrange
-            var provider = new InlineAutoDataAttributeProvider();
+            var provider = new Mock<IAutoFixtureInlineAttributeProvider>().Object;
             const object[] initialValues = null;
 
             // Act
@@ -122,7 +122,7 @@
         {
             // Arrange
             const Fixture fixture = null;
-            var provider = new InlineAutoDataAttributeProvider();
+            var provider = new Mock<IAutoFixtureInlineAttributeProvider>().Object;
 
             // Act
             // Assert
@@ -134,15 +134,13 @@
         public void GivenUninitializedAttributeProvider_WhenConstructorIsInvoked_ThenExceptionIsThrown(Fixture fixture)
         {
             // Arrange
-            const InlineAutoDataAttributeProvider provider = null;
+            const IAutoFixtureInlineAttributeProvider provider = null;
 
             // Act
             // Assert
             Assert.Throws<ArgumentNullException>(() => new InlineAutoMockingTestHelperDataAttribute(fixture, provider));
         }
 
-        // TODO: Refactor test
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "MJ: Test will be refactored")]
         [Theory(DisplayName = "WHEN GetData is invoked THEN fixture is configured and data returned")]
         [InlineAutoData(true)]
         [InlineAutoData(false)]

@@ -15,7 +15,7 @@
     using Xunit.Sdk;
 
     [Collection("AutoNSubstituteDataAttribute")]
-    [Trait("Category", "Attributes")]
+    [Trait("Category", "NSubstitute")]
     public class AutoNSubstituteDataAttributeTests
     {
         public void TestMethod()

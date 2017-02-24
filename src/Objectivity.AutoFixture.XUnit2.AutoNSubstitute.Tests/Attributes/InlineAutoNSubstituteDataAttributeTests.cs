@@ -15,7 +15,7 @@
     using Xunit.Sdk;
 
     [Collection("InlineAutoNSubstituteDataAttribute")]
-    [Trait("Category", "Attributes")]
+    [Trait("Category", "NSubstitute")]
     public class InlineAutoNSubstituteDataAttributeTests
     {
         [Fact(DisplayName = "WHEN parameterless constructor is invoked THEN has no values but fixture and attribute provider are created")]
@@ -142,8 +142,6 @@
             Assert.Throws<ArgumentNullException>(() => new InlineAutoNSubstituteDataAttribute(fixture, provider));
         }
 
-        // TODO: Refactor test
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "MJ: Test will be refactored")]
         [Theory(DisplayName = "WHEN GetData is invoked THEN fixture is configured and data returned")]
         [InlineAutoData(true)]
         [InlineAutoData(false)]

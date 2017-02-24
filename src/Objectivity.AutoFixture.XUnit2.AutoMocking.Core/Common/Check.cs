@@ -1,4 +1,4 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Common
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Common
 {
     using System;
     using System.Diagnostics;
@@ -8,7 +8,7 @@
     /// Copied from <see cref="!:https://github.com/aspnet/EntityFramework/blob/dev/src/Shared/Check.cs">Check.cs</see>
     /// </summary>
     [DebuggerStepThrough]
-    internal static class Check
+    public static class Check
     {
         [ContractAnnotation("value:null => halt")]
         public static T NotNull<T>(

@@ -1,4 +1,4 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Customizations
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Customizations
 {
     using System.Linq;
     using Common;

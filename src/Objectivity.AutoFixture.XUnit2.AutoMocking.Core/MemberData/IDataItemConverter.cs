@@ -1,4 +1,4 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.MemberData
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.MemberData
 {
     using System;
     using System.Reflection;

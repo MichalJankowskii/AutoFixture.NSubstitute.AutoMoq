@@ -103,19 +103,7 @@
     <Compile Include="Attributes\InlineAutoNSubstituteDataAttribute.cs" />
     <Compile Include="Attributes\MemberAutoNSubstituteDataAttribute.cs" />
     <Compile Include="Customizations\AutoNSubstituteDataCustomization.cs" />
-    <Compile Include="Customizations\DoNotThrowOnRecursionCustomization.cs" />
-    <Compile Include="Customizations\IgnoreVirtualMembersCustomization.cs" />
-    <Compile Include="Customizations\OmitOnRecursionCustomization.cs" />
-    <Compile Include="MemberData\IDataItemConverter.cs" />
-    <Compile Include="MemberData\MemberAutoDataItemConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Common\Check.cs" />
-    <Compile Include="Common\ValidatedNotNullAttribute.cs" />
-    <Compile Include="Providers\AutoDataAttributeProvider.cs" />
-    <Compile Include="Providers\IAutoFixtureAttributeProvider.cs" />
-    <Compile Include="Providers\IAutoFixtureInlineAttributeProvider.cs" />
-    <Compile Include="Providers\InlineAutoDataAttributeProvider.cs" />
-    <Compile Include="SpecimenBuilders\IgnoreVirtualMembersSpecimenBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -133,6 +121,12 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Objectivity.AutoFixture.XUnit2.AutoMocking.Core\Objectivity.AutoFixture.XUnit2.AutoMocking.Core.csproj">
+      <Project>{45ff7820-4c37-4672-8193-645fba5efb48}</Project>
+      <Name>Objectivity.AutoFixture.XUnit2.AutoMocking.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

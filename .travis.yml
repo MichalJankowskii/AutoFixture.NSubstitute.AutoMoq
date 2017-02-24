@@ -1,5 +1,4 @@
 language: csharp
-solution: ./src/Objectivity.AutoFixture.XUnit2.AutoNSubstitute.sln
+solution: ./src/Objectivity.AutoFixture.XUnit2.AutoMocking.sln
 script:
-  - xbuild /p:Configuration=Release ./src/Objectivity.AutoFixture.XUnit2.AutoNSubstitute.sln
-  - mono ./src/packages/xunit.runner.console.*/tools/xunit.console.exe ./src/Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Tests/bin/Release/Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Tests.dll
+  - xbuild /p:Configuration=Release ./src/Objectivity.AutoFixture.XUnit2.AutoMocking.sln

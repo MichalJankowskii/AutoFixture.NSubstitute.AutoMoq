@@ -1,6 +1,6 @@
 ﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests.Customizations
 {
-    using AutoNSubstitute.Customizations;
+    using AutoMocking.Core.Customizations;
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.Xunit2;
     using Xunit;

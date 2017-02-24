@@ -1,50 +1,29 @@
 ﻿namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Attributes
 {
     using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Reflection;
-    using Common;
+    using AutoMocking.Core.Attributes;
+    using AutoMocking.Core.Customizations;
+    using AutoMocking.Core.Providers;
     using Customizations;
     using Ploeh.AutoFixture;
-    using Providers;
-    using Xunit.Sdk;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments", Justification = "Parameter 'values' is exposed with ReadOnlyCollection.")]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    public sealed class InlineAutoNSubstituteDataAttribute : DataAttribute
+    public sealed class InlineAutoNSubstituteDataAttribute : InlineAutoMockingDataAttribute
     {
-        private readonly object[] values;
-
         public InlineAutoNSubstituteDataAttribute(params object[] values)
-            : this(new Fixture(), new InlineAutoDataAttributeProvider(), values)
+            : base(values)
         {
         }
 
         public InlineAutoNSubstituteDataAttribute(IFixture fixture, IAutoFixtureInlineAttributeProvider provider, params object[] values)
+            : base(fixture, provider, values)
         {
-            this.Provider = provider.NotNull(nameof(provider));
-            this.Fixture = fixture.NotNull(nameof(fixture));
-            this.values = values ?? new object[0];
         }
 
-        public IFixture Fixture { get; }
-
-        public IAutoFixtureInlineAttributeProvider Provider { get; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether virtual members should be ignored during object creation.
-        /// </summary>
-        public bool IgnoreVirtualMembers { get; set; } = false;
-
-        public IReadOnlyCollection<object> Values => new ReadOnlyCollection<object>(this.values);
-
-        public override IEnumerable<object[]> GetData(MethodInfo testMethod)
+        protected override IAutoMockingDataCustomization GenerateAutoMockingDataCustomization()
         {
-            this.Fixture.Customize(new AutoNSubstituteDataCustomization());
-            this.Fixture.Customize(new IgnoreVirtualMembersCustomization(this.IgnoreVirtualMembers));
-
-            return this.Provider.GetAttribute(this.Fixture, this.values).GetData(testMethod);
+            return new AutoNSubstituteDataCustomization();
         }
     }
 }

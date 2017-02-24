@@ -1,7 +1,7 @@
 ﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests.Providers
 {
     using System.Diagnostics.CodeAnalysis;
-    using AutoNSubstitute.Providers;
+    using AutoMocking.Core.Providers;
     using FluentAssertions;
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.Xunit2;

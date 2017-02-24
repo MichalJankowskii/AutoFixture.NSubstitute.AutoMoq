@@ -1,4 +1,4 @@
-namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.SpecimenBuilders
+namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.SpecimenBuilders
 {
     using System.Reflection;
     using Ploeh.AutoFixture.Kernel;

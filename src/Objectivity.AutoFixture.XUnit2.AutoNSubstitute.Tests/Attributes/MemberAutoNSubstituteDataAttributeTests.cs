@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AutoMocking.Core.Customizations;
     using AutoNSubstitute.Attributes;
     using AutoNSubstitute.Customizations;
     using FluentAssertions;

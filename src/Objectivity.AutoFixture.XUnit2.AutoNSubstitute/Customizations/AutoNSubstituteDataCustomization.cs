@@ -1,10 +1,11 @@
 ﻿namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Customizations
 {
-    using Common;
+    using AutoMocking.Core.Common;
+    using AutoMocking.Core.Customizations;
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.AutoNSubstitute;
 
-    public class AutoNSubstituteDataCustomization : ICustomization
+    public class AutoNSubstituteDataCustomization : IAutoMockingDataCustomization
     {
         public void Customize(IFixture fixture)
         {

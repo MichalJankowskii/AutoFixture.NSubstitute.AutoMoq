@@ -3,9 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Reflection;
+    using AutoMocking.Core.Customizations;
+    using AutoMocking.Core.Providers;
     using AutoNSubstitute.Attributes;
     using AutoNSubstitute.Customizations;
-    using AutoNSubstitute.Providers;
     using FluentAssertions;
     using Moq;
     using Ploeh.AutoFixture;

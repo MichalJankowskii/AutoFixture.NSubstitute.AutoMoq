@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq.Expressions;
-    using AutoNSubstitute.SpecimenBuilders;
+    using AutoMocking.Core.SpecimenBuilders;
     using FluentAssertions;
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.AutoNSubstitute;

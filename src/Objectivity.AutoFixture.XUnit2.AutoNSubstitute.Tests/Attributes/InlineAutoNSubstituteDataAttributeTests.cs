@@ -3,9 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Reflection;
+    using AutoMocking.Core.Customizations;
+    using AutoMocking.Core.Providers;
     using AutoNSubstitute.Attributes;
     using AutoNSubstitute.Customizations;
-    using AutoNSubstitute.Providers;
     using FluentAssertions;
     using Moq;
     using Ploeh.AutoFixture;
@@ -141,6 +142,8 @@
             Assert.Throws<ArgumentNullException>(() => new InlineAutoNSubstituteDataAttribute(fixture, provider));
         }
 
+        // TODO: Refactor test
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "MJ: Test will be refactored")]
         [Theory(DisplayName = "WHEN GetData is invoked THEN fixture is configured and data returned")]
         [InlineAutoData(true)]
         [InlineAutoData(false)]

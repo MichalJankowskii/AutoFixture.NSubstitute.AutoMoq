@@ -2,7 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using AutoNSubstitute.Common;
+    using AutoMocking.Core.Common;
     using FluentAssertions;
     using Xunit;
 

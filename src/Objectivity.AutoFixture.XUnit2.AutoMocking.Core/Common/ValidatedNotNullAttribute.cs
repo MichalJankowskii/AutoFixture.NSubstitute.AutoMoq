@@ -1,4 +1,4 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Common
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Common
 {
     using System;
 

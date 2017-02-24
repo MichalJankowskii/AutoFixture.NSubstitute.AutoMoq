@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using AutoNSubstitute.MemberData;
-    using AutoNSubstitute.Providers;
+    using AutoMocking.Core.MemberData;
+    using AutoMocking.Core.Providers;
     using FluentAssertions;
     using Moq;
     using Ploeh.AutoFixture;

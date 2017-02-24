@@ -1,4 +1,4 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Providers
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Providers
 {
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.Xunit2;

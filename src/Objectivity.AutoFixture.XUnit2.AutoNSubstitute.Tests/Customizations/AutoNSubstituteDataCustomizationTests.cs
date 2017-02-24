@@ -1,4 +1,4 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests.Customizations
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Tests.Customizations
 {
     using AutoMocking.Core.Tests;
     using AutoNSubstitute.Customizations;

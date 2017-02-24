@@ -1,4 +1,4 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests.Attributes
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoNSubstitute.Tests.Attributes
 {
     using System;
     using System.Collections.Generic;

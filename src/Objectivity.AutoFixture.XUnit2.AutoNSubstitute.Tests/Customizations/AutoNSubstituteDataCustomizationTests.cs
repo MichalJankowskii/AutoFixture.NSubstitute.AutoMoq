@@ -1,7 +1,9 @@
 ﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests.Customizations
 {
+    using AutoMocking.Core.Tests;
     using AutoNSubstitute.Customizations;
     using Ploeh.AutoFixture;
+    using Ploeh.AutoFixture.AutoNSubstitute;
     using Ploeh.AutoFixture.Xunit2;
     using Xunit;
 
@@ -18,7 +20,7 @@
             fixture.Customize(customization);
 
             // Assert
-            fixture.ShouldBeAutoNSubstituteCustomized();
+            fixture.ShouldBeAutoMockingCustomized<SubstituteRequestHandler>();
             fixture.ShouldNotThrowOnRecursion();
             fixture.ShouldOmitRecursion();
         }

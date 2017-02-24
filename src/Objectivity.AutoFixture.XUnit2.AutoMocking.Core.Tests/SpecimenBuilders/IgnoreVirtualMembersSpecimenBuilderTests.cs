@@ -1,6 +1,6 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests.SpecimenBuilders
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests.SpecimenBuilders
 {
-    using AutoMocking.Core.SpecimenBuilders;
+    using Core.SpecimenBuilders;
     using FluentAssertions;
     using Moq;
     using Ploeh.AutoFixture.Kernel;

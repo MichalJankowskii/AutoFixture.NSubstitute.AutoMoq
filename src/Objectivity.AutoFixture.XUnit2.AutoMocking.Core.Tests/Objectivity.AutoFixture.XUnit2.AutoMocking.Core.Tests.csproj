@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A4A22ABF-A244-406C-8486-371EE628096E}</ProjectGuid>
+    <ProjectGuid>{DC909047-5C17-4585-AE97-464CBF077587}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Objectivity.AutoFixture.XUnit2.NSubstitute.Tests</RootNamespace>
-    <AssemblyName>Objectivity.AutoFixture.XUnit2.NSubstitute.Tests</AssemblyName>
+    <RootNamespace>Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests</RootNamespace>
+    <AssemblyName>Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -109,11 +109,23 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Attributes\AutoNSubstituteDataAttributeTests.cs" />
-    <Compile Include="Attributes\InlineAutoNSubstituteDataAttributeTests.cs" />
-    <Compile Include="Attributes\MemberAutoNSubstituteDataAttributeTests.cs" />
-    <Compile Include="Customizations\AutoNSubstituteDataCustomizationTests.cs" />
+    <Compile Include="Attributes\AutoMockingDataAttributeTests.cs" />
+    <Compile Include="Attributes\InlineAutoMockingDataAttributeTests.cs" />
+    <Compile Include="Attributes\MemberAutoMockingDataAttributeTests.cs" />
+    <Compile Include="Customizations\DoNotThrowOnRecursionCustomizationTests.cs" />
+    <Compile Include="Customizations\IgnoreVirtualMembersCustomizationTests.cs" />
+    <Compile Include="Customizations\OmitOnRecursionCustomizationTests.cs" />
+    <Compile Include="FixtureAssertionExtensions.cs" />
+    <Compile Include="Helpers\AutoMockingTestHelperDataAttribute.cs" />
+    <Compile Include="Helpers\AutoMockingTestHelperDataCustomization.cs" />
+    <Compile Include="Helpers\InlineAutoMockingTestHelperDataAttribute.cs" />
+    <Compile Include="Helpers\MemberAutoMockingTestHelperDataAttribute.cs" />
+    <Compile Include="MemberData\MemberAutoDataItemConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\CheckTests.cs" />
+    <Compile Include="Providers\AutoDataAttributeProviderTests.cs" />
+    <Compile Include="Providers\InlineAutoDataAttributeProviderTests.cs" />
+    <Compile Include="SpecimenBuilders\IgnoreVirtualMembersSpecimenBuilderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -126,17 +138,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests\Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests.csproj">
-      <Project>{dc909047-5c17-4585-ae97-464cbf077587}</Project>
-      <Name>Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Objectivity.AutoFixture.XUnit2.AutoMocking.Core\Objectivity.AutoFixture.XUnit2.AutoMocking.Core.csproj">
       <Project>{45ff7820-4c37-4672-8193-645fba5efb48}</Project>
       <Name>Objectivity.AutoFixture.XUnit2.AutoMocking.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Objectivity.AutoFixture.XUnit2.AutoNSubstitute\Objectivity.AutoFixture.XUnit2.AutoNSubstitute.csproj">
-      <Project>{9aeafb2f-bbf0-4690-b269-aff6265a9c71}</Project>
-      <Name>Objectivity.AutoFixture.XUnit2.AutoNSubstitute</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

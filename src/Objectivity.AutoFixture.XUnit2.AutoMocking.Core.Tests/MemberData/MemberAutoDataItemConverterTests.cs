@@ -1,17 +1,17 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests.MemberData
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests.MemberData
 {
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using AutoMocking.Core.MemberData;
-    using AutoMocking.Core.Providers;
+    using Core.MemberData;
+    using Core.Providers;
     using FluentAssertions;
     using Moq;
     using Ploeh.AutoFixture;
     using Xunit;
     using Xunit.Sdk;
 
-    [Collection("MemberAutoNSubstituteDataItemConverter")]
+    [Collection("MemberAutoDataItemConverterTests")]
     [Trait("Category", "MemberData")]
     public class MemberAutoDataItemConverterTests
     {

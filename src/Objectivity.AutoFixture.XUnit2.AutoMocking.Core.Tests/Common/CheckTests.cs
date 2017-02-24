@@ -1,8 +1,8 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests.Common
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests.Common
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using AutoMocking.Core.Common;
+    using Core.Common;
     using FluentAssertions;
     using Xunit;
 

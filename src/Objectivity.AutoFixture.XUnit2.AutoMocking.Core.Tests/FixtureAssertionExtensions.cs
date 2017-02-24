@@ -1,45 +1,44 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests
 {
     using System;
     using System.Linq.Expressions;
-    using AutoMocking.Core.SpecimenBuilders;
+    using Core.SpecimenBuilders;
     using FluentAssertions;
     using Ploeh.AutoFixture;
-    using Ploeh.AutoFixture.AutoNSubstitute;
     using Ploeh.AutoFixture.Kernel;
 
-    internal static class FixtureAssertionExtensions
+    public static class FixtureAssertionExtensions
     {
-        internal static void ShouldBeAutoNSubstituteCustomized(this IFixture fixture)
+        public static void ShouldBeAutoMockingCustomized<TSpecimenBuilder>(this IFixture fixture) where TSpecimenBuilder : ISpecimenBuilder
         {
             Expression<Func<ISpecimenBuilder, bool>> mockProcessorPredicate =
                 specimenBuilder =>
                     specimenBuilder is Postprocessor &&
-                    ((Postprocessor) specimenBuilder).Builder is SubstituteRequestHandler;
+                    ((Postprocessor) specimenBuilder).Builder is TSpecimenBuilder;
 
             // Ensure mock processor is added to customizations
             fixture.Customizations.Should().ContainSingle(mockProcessorPredicate);
         }
 
-        internal static void ShouldNotThrowOnRecursion(this IFixture fixture)
+        public static void ShouldNotThrowOnRecursion(this IFixture fixture)
         {
             // Ensure there is no behaviour for throwing exception on recursive structures.
             fixture.Behaviors.Should().NotContain(b => b is ThrowingRecursionBehavior);
         }
 
-        internal static void ShouldOmitRecursion(this IFixture fixture)
+        public static void ShouldOmitRecursion(this IFixture fixture)
         {
             // Ensure there is a beaviour added for omitting recursive types
             // on default recursion depth.
             fixture.Behaviors.Should().ContainSingle(b => b is OmitOnRecursionBehavior);
         }
 
-        internal static void ShouldNotIgnoreVirtualMembers(this IFixture fixture)
+        public static void ShouldNotIgnoreVirtualMembers(this IFixture fixture)
         {
             fixture.Customizations.Should().NotContain(s => s is IgnoreVirtualMembersSpecimenBuilder);
         }
 
-        internal static void ShouldIgnoreVirtualMembers(this IFixture fixture)
+        public static void ShouldIgnoreVirtualMembers(this IFixture fixture)
         {
             fixture.Customizations.Should().ContainSingle(s => s is IgnoreVirtualMembersSpecimenBuilder);
         }

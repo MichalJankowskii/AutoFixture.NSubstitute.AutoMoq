@@ -1,15 +1,16 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests.Providers
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests.Providers
 {
     using System.Diagnostics.CodeAnalysis;
-    using AutoMocking.Core.Providers;
+    using System.Linq;
+    using Core.Providers;
     using FluentAssertions;
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.Xunit2;
     using Xunit;
 
-    [Collection("AutoDataAttributeProvider")]
+    [Collection("InlineAutoDataAttributeProvider")]
     [Trait("Category", "Providers")]
-    public class AutoDataAttributeProviderTests
+    public class InlineAutoDataAttributeProviderTests
     {
         [Theory(DisplayName = "GIVEN initialized fixture WHEN GetAttribute is invoked THEN attribute with specified fixture is returned")]
         [AutoData]
@@ -17,14 +18,14 @@
         public void GivenInitializedFixture_WhenGetAttributeIsInvoked_ThenAttributeWithSpecifiedFixtureIsReturned(Fixture fixture)
         {
             // Arrange
-            var provider = new AutoDataAttributeProvider();
-
+            var provider = new InlineAutoDataAttributeProvider();
+                 
             // Act
-            var dataAttribute = provider.GetAttribute(fixture) as AutoDataAttribute;
+            var dataAttribute = provider.GetAttribute(fixture) as CompositeDataAttribute;
 
             // Assert
             dataAttribute.Should().NotBeNull();
-            dataAttribute.Fixture.Should().Be(fixture);
+            dataAttribute.Attributes.FirstOrDefault(a => a is AutoDataAttribute).As<AutoDataAttribute>().Fixture.Should().Be(fixture);
         }
     }
 }

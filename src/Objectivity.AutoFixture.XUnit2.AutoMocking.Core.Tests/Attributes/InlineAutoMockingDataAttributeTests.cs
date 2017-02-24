@@ -1,29 +1,28 @@
-﻿namespace Objectivity.AutoFixture.XUnit2.NSubstitute.Tests.Attributes
+﻿namespace Objectivity.AutoFixture.XUnit2.AutoMocking.Core.Tests.Attributes
 {
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using AutoMocking.Core.Customizations;
-    using AutoMocking.Core.Providers;
-    using AutoNSubstitute.Attributes;
-    using AutoNSubstitute.Customizations;
+    using Core.Customizations;
+    using Core.Providers;
     using FluentAssertions;
+    using Helpers;
     using Moq;
     using Ploeh.AutoFixture;
     using Ploeh.AutoFixture.Xunit2;
     using Xunit;
     using Xunit.Sdk;
 
-    [Collection("InlineAutoNSubstituteDataAttribute")]
+    [Collection("InlineAutoMockingDataAttribute")]
     [Trait("Category", "Attributes")]
-    public class InlineAutoNSubstituteDataAttributeTests
+    public class InlineAutoMockingDataAttributeTests
     {
         [Fact(DisplayName = "WHEN parameterless constructor is invoked THEN has no values but fixture and attribute provider are created")]
         public void WhenParameterlessConstructorIsInvoked_ThenHasNoValuesButFixtureAndAttributeProviderAreCreated()
         {
             // Arrange
             // Act
-            var attribute = new InlineAutoNSubstituteDataAttribute();
+            var attribute = new InlineAutoMockingTestHelperDataAttribute();
 
             // Assert
             attribute.Fixture.Should().NotBeNull();
@@ -39,7 +38,7 @@
             var initialValues = new[] {"test", 1, new object()};
 
             // Act
-            var attribute = new InlineAutoNSubstituteDataAttribute(initialValues[0], initialValues[1], initialValues[2]);
+            var attribute = new InlineAutoMockingTestHelperDataAttribute(initialValues[0], initialValues[1], initialValues[2]);
 
             // Assert
             attribute.Fixture.Should().NotBeNull();
@@ -55,7 +54,7 @@
             const object[] initialValues = null;
 
             // Act
-            var attribute = new InlineAutoNSubstituteDataAttribute(initialValues);
+            var attribute = new InlineAutoMockingTestHelperDataAttribute(initialValues);
 
             // Assert
             attribute.Fixture.Should().NotBeNull();
@@ -69,10 +68,10 @@
         public void GivenExistingFixtureAndAttributeProvider_WhenConstructorIsInvoked_ThenHasFixtureAttributeProviderAndNoValues(Fixture fixture)
         {
             // Arrange
-            var provider = new Mock<IAutoFixtureInlineAttributeProvider>().Object;
+            var provider = new InlineAutoDataAttributeProvider();
 
             // Act
-            var attribute = new InlineAutoNSubstituteDataAttribute(fixture, provider);
+            var attribute = new InlineAutoMockingTestHelperDataAttribute(fixture, provider);
 
             // Assert
             attribute.Fixture.Should().Be(fixture);
@@ -86,11 +85,11 @@
         public void GivenExistingFixtureAttributeProviderAndValues_WhenConstructorIsInvoked_ThenHasSpecifiedFixtureAttributeProviderAndValues(Fixture fixture)
         {
             // Arrange
-            var provider = new Mock<IAutoFixtureInlineAttributeProvider>().Object;
+            var provider = new InlineAutoDataAttributeProvider();
             var initialValues = new[] { "test", 1, new object() };
 
             // Act
-            var attribute = new InlineAutoNSubstituteDataAttribute(fixture, provider, initialValues[0], initialValues[1], initialValues[2]);
+            var attribute = new InlineAutoMockingTestHelperDataAttribute(fixture, provider, initialValues[0], initialValues[1], initialValues[2]);
 
             // Assert
             attribute.Fixture.Should().Be(fixture);
@@ -104,11 +103,11 @@
         public void GivenExistingFixtureAttributeProviderAndUninitializedValues_WhenConstructorIsInvoked_ThenHasSpecifiedFixtureAttributeProviderAndNoValues(Fixture fixture)
         {
             // Arrange
-            var provider = new Mock<IAutoFixtureInlineAttributeProvider>().Object;
+            var provider = new InlineAutoDataAttributeProvider();
             const object[] initialValues = null;
 
             // Act
-            var attribute = new InlineAutoNSubstituteDataAttribute(fixture, provider, initialValues);
+            var attribute = new InlineAutoMockingTestHelperDataAttribute(fixture, provider, initialValues);
 
             // Assert
             attribute.Fixture.Should().Be(fixture);
@@ -123,11 +122,11 @@
         {
             // Arrange
             const Fixture fixture = null;
-            var provider = new Mock<IAutoFixtureInlineAttributeProvider>().Object;
+            var provider = new InlineAutoDataAttributeProvider();
 
             // Act
             // Assert
-            Assert.Throws<ArgumentNullException>(() => new InlineAutoNSubstituteDataAttribute(fixture, provider));
+            Assert.Throws<ArgumentNullException>(() => new InlineAutoMockingTestHelperDataAttribute(fixture, provider));
         }
 
         [Theory(DisplayName = "GIVEN uninitialized attribute provider WHEN constructor is invoked THEN exception is thrown")]
@@ -135,11 +134,11 @@
         public void GivenUninitializedAttributeProvider_WhenConstructorIsInvoked_ThenExceptionIsThrown(Fixture fixture)
         {
             // Arrange
-            const IAutoFixtureInlineAttributeProvider provider = null;
+            const InlineAutoDataAttributeProvider provider = null;
 
             // Act
             // Assert
-            Assert.Throws<ArgumentNullException>(() => new InlineAutoNSubstituteDataAttribute(fixture, provider));
+            Assert.Throws<ArgumentNullException>(() => new InlineAutoMockingTestHelperDataAttribute(fixture, provider));
         }
 
         // TODO: Refactor test
@@ -163,11 +162,11 @@
             dataAttribute.Setup(a => a.GetData(It.IsAny<MethodInfo>())).Returns(data);
             var provider = new Mock<IAutoFixtureInlineAttributeProvider>();
             provider.Setup(p => p.GetAttribute(It.IsAny<IFixture>())).Returns(dataAttribute.Object);
-            var attribute = new InlineAutoNSubstituteDataAttribute(fixture.Object, provider.Object)
+            var attribute = new InlineAutoMockingTestHelperDataAttribute(fixture.Object, provider.Object)
             {
                 IgnoreVirtualMembers = ignoreVirtualMembers
             };
-            var methodInfo = typeof(AutoNSubstituteDataAttributeTests).GetMethod("TestMethod");
+            var methodInfo = typeof(AutoMockingDataAttributeTests).GetMethod("TestMethod");
 
             // Act
             var result = attribute.GetData(methodInfo);
@@ -177,22 +176,9 @@
             provider.VerifyAll();
             dataAttribute.VerifyAll();
 
-            customizations[0].Should().BeOfType<AutoNSubstituteDataCustomization>();
+            customizations[0].Should().BeOfType<AutoMockingTestHelperDataCustomization>();
             customizations[1].Should().BeOfType<IgnoreVirtualMembersCustomization>();
             ((IgnoreVirtualMembersCustomization)customizations[1]).IgnoreVirtualMembers.Should().Be(ignoreVirtualMembers);
-        }
-
-        [InlineAutoNSubstituteData(100)]
-        [Theory(DisplayName = "GIVEN test method has some inline parameters WHEN test run THEN parameters are generated")]
-        public void GivenTestMethodHasSomeInlineParameters_WhenTestRun_ThenParametersAreGenerated(int value, IDisposable disposable)
-        {
-            // Arrange
-            // Act
-            // Assert
-            value.Should().Be(100);
-
-            disposable.Should().NotBeNull();
-            disposable.GetType().Name.Should().StartWith("IDisposableProxy", "that way we know it was mocked with NSubstitute.");
         }
     }
 }

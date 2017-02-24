@@ -1,5 +1,5 @@
 # Objectivity.AutoFixture.XUnit2.AutoNSubstitute
-[![Build Status](https://travis-ci.org/MichalJankowskii/AutoFixture.XUnit2.NSubstitute.svg?branch=master)](https://travis-ci.org/MichalJankowskii/AutoFixture.XUnit2.NSubstitute)
+[![Build Status](https://travis-ci.org/MichalJankowskii/AutoFixture.XUnit2.AutoMocking.svg?branch=master)](https://travis-ci.org/MichalJankowskii/AutoFixture.XUnit2.AutoMocking)
 
 Accelerates preparation of mocked structures for unit tests under  [XUnit2](http://xunit.github.io/) by configuring [AutoFixture](https://github.com/AutoFixture/AutoFixture) data generation to use [NSubstitute](http://nsubstitute.github.io/). Gracefully handles recursive structures by omitting recursions.
 It provides 3 attributes:
